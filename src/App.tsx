@@ -1,44 +1,32 @@
 import "~/src/App.css"
 
-import {useState} from "react"
-
-import viteLogo from "/vite.svg"
-import reactLogo from "~/src/react.svg"
+import {cloudinary} from "~/src/cloudinary"
+const header = cloudinary.image("cloudinary-text-overlay-demo/header")
 
 function App() {
-    const [count, setCount] = useState(0)
-
     return (
         <>
-            <div>
-                <a href="https://vitejs.dev" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo" />
-                </a>
-
-                <a href="https://react.dev" target="_blank">
-                    <img
-                        src={reactLogo}
-                        className="logo react"
-                        alt="React logo"
-                    />
-                </a>
+            <div className="header">
+                <img src={header.toURL()} alt="shoes on a wall" />
             </div>
 
-            <h1>Vite + React</h1>
+            <h1>Get your kicks</h1>
 
-            <div className="card">
-                <button onClick={() => setCount(count => count + 1)}>
-                    count is {count}
-                </button>
+            <div className="product-grid">
+                {Array(10)
+                    .fill(null)
+                    .map((_, index) => {
+                        const shoes = `shoes-${index + 1}`
 
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
-                </p>
+                        const image = cloudinary.image(
+                            `cloudinary-text-overlay-demo/${shoes}`,
+                        )
+
+                        return (
+                            <img key={shoes} src={image.toURL()} alt="shoes" />
+                        )
+                    })}
             </div>
-
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
         </>
     )
 }
