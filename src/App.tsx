@@ -3,7 +3,7 @@ import "~/src/App.css"
 import {cloudinary} from "~/src/cloudinary"
 const header = cloudinary.image("cloudinary-text-overlay-demo/header")
 
-function App() {
+const App = () => {
     return (
         <>
             <div className="header">
@@ -13,7 +13,7 @@ function App() {
             <h1>Get your kicks</h1>
 
             <div className="product-grid">
-                {Array(10)
+                {Array(6)
                     .fill(null)
                     .map((_, index) => {
                         const shoes = `shoes-${index + 1}`

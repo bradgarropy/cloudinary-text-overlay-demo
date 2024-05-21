@@ -21,5 +21,21 @@
 
 .product-grid img {
     width: 100%;
-    border-radius: 1rem;
+    object-fit: contain;
+}
+
+.product-grid img:first-child {
+    border-top-left-radius: 1rem;
+}
+
+.product-grid img:nth-child(3) {
+    border-top-right-radius: 1rem;
+}
+
+.product-grid img:nth-child(4) {
+    border-bottom-left-radius: 1rem;
+}
+
+.product-grid img:last-child {
+    border-bottom-right-radius: 1rem;
 }
