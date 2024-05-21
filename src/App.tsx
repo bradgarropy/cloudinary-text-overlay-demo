@@ -9,6 +9,33 @@ import {TextStyle} from "@cloudinary/url-gen/qualifiers/textStyle"
 
 import {cloudinary} from "~/src/cloudinary"
 
+const shoes = [
+    {
+        name: "shoes-0",
+        sale: true,
+    },
+    {
+        name: "shoes-1",
+        sale: false,
+    },
+    {
+        name: "shoes-2",
+        sale: true,
+    },
+    {
+        name: "shoes-3",
+        sale: false,
+    },
+    {
+        name: "shoes-4",
+        sale: false,
+    },
+    {
+        name: "shoes-5",
+        sale: false,
+    },
+]
+
 const header = cloudinary
     .image("cloudinary-text-overlay-demo/header")
     .resize(Resize.fill(1280, 270))
@@ -33,43 +60,37 @@ const App = () => {
             <h1>Get your kicks</h1>
 
             <div className="product-grid">
-                {Array(6)
-                    .fill(null)
-                    .map((_, index) => {
-                        const shoes = `shoes-${index}`
+                {shoes.map(shoe => {
+                    const saleBanner = source(
+                        text(
+                            "SALE",
+                            new TextStyle("Georgia", 100).fontWeight("bold"),
+                        ).textColor("red"),
+                    ).position(
+                        new Position()
+                            .gravity(compass("north_east"))
+                            .offsetX(20)
+                            .offsetY(20),
+                    )
 
-                        const saleBanner = source(
-                            text(
-                                "SALE",
-                                new TextStyle("Georgia", 100).fontWeight(
-                                    "bold",
-                                ),
-                            ).textColor("red"),
-                        ).position(
-                            new Position()
-                                .gravity(compass("north_east"))
-                                .offsetX(20)
-                                .offsetY(20),
-                        )
+                    const image = cloudinary
+                        .image(`cloudinary-text-overlay-demo/${shoe.name}`)
+                        .resize(Resize.scale(500))
+                        .quality("auto")
+                        .format("auto")
 
-                        const image = cloudinary
-                            .image(`cloudinary-text-overlay-demo/${shoes}`)
-                            .resize(Resize.scale(500))
-                            .quality("auto")
-                            .format("auto")
-
-                        return (
-                            <img
-                                key={shoes}
-                                src={
-                                    index === 0 || index === 2
-                                        ? image.overlay(saleBanner).toURL()
-                                        : image.toURL()
-                                }
-                                alt={shoes}
-                            />
-                        )
-                    })}
+                    return (
+                        <img
+                            key={shoe.name}
+                            src={
+                                shoe.sale
+                                    ? image.overlay(saleBanner).toURL()
+                                    : image.toURL()
+                            }
+                            alt={shoe.name}
+                        />
+                    )
+                })}
             </div>
         </>
     )
