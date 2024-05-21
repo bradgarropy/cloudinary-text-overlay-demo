@@ -14,6 +14,11 @@
     border-radius: 1rem;
 }
 
+h1 {
+    margin-top: 5rem;
+    text-transform: uppercase;
+}
+
 .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
