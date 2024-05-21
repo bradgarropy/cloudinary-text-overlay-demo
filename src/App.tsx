@@ -8,9 +8,20 @@ import {text} from "@cloudinary/url-gen/qualifiers/source"
 import {TextStyle} from "@cloudinary/url-gen/qualifiers/textStyle"
 
 import {cloudinary} from "~/src/cloudinary"
+
 const header = cloudinary
     .image("cloudinary-text-overlay-demo/header")
-    .resize(Resize.scale(1280))
+    .resize(Resize.fill(1280, 270))
+    .quality("auto")
+    .format("auto")
+    .overlay(
+        source(
+            text(
+                "FRESH FEET",
+                new TextStyle("Georgia", 100).fontWeight("bold"),
+            ).textColor("white"),
+        ),
+    )
 
 const App = () => {
     return (
@@ -44,6 +55,8 @@ const App = () => {
                         const image = cloudinary
                             .image(`cloudinary-text-overlay-demo/${shoes}`)
                             .resize(Resize.scale(500))
+                            .quality("auto")
+                            .format("auto")
 
                         return (
                             <img
