@@ -1,5 +1,6 @@
 import "~/src/App.css"
 
+import {Cloudinary} from "@cloudinary/url-gen"
 import {source} from "@cloudinary/url-gen/actions/overlay"
 import {Resize} from "@cloudinary/url-gen/actions/resize"
 import {Position} from "@cloudinary/url-gen/qualifiers"
@@ -7,31 +8,38 @@ import {compass} from "@cloudinary/url-gen/qualifiers/gravity"
 import {text} from "@cloudinary/url-gen/qualifiers/source"
 import {TextStyle} from "@cloudinary/url-gen/qualifiers/textStyle"
 
-import {cloudinary} from "~/src/cloudinary"
+const cloudinary = new Cloudinary({
+    cloud: {
+        cloudName: "bradgarropy",
+    },
+    url: {
+        secure: true,
+    },
+})
 
 const shoes = [
     {
-        name: "shoes-0",
+        name: "new-balance",
         sale: true,
     },
     {
-        name: "shoes-1",
+        name: "puma",
         sale: false,
     },
     {
-        name: "shoes-2",
+        name: "adidas",
         sale: true,
     },
     {
-        name: "shoes-3",
+        name: "vans",
         sale: false,
     },
     {
-        name: "shoes-4",
+        name: "converse",
         sale: false,
     },
     {
-        name: "shoes-5",
+        name: "nike",
         sale: false,
     },
 ]
