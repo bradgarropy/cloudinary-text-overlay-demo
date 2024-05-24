@@ -12,9 +12,6 @@ const cloudinary = new Cloudinary({
     cloud: {
         cloudName: "bradgarropy",
     },
-    url: {
-        secure: true,
-    },
 })
 
 const shoes = [
